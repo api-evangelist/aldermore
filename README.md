@@ -1,0 +1,99 @@
+# Aldermore Bank (aldermore)
+
+Aldermore Bank plc is a UK specialist bank founded in 2009 and headquartered in Reading, offering savings accounts and specialist lending across residential and buy-to-let mortgages, commercial and property finance, asset finance, invoice finance, and motor finance (through sister company MotoNovo Finance). Aldermore Group is wholly owned by South Africa's FirstRand Group (acquired 2018; a sale/exit process began in 2026). Aldermore Bank plc is authorised by the PRA and regulated by the FCA and PRA (Financial Services Register number 204503). It is a branchless, digitally-delivered specialist lender rather than a full-service current-account bank, and it is NOT one of the CMA9. Because it does not provide current accounts, its UK Open Banking (OBIE / PSD2) payment-account footprint is minimal.
+
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/aldermore/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/aldermore/refs/heads/main/apis.yml)
+
+## Public API posture
+
+At bootstrap, no public Aldermore developer portal, Open Data endpoint, or bank-proprietary API surface could be confirmed:
+
+- No `developer.`, `api.`, `openbanking.`, or `apis.aldermore.co.uk` subdomain resolves.
+- The bank's site (legal, contact, investors pages) makes no mention of a developer program, API, Open Banking, or Open Data.
+- Aldermore does not appear in community/OBIE lists of UK Open Data publishers (which are dominated by the CMA9).
+- A `https://www.aldermore.co.uk/.well-known/open-banking/config.json` probe returned HTTP 404.
+
+The OBIE API families below are therefore represented as the **shared UK Open Banking standard, unverified for this bank** — the harvested specs are the Open Banking Implementation Entity reference contracts, not Aldermore-published contracts.
+
+## Tags
+
+- Financial Services
+- Banking
+- Savings
+- Specialist Lending
+- Open Banking
+- PSD2
+- OBIE
+- United Kingdom
+- Payments
+- Account Information
+
+## Timestamps
+
+- **Created:** 2026-07-23
+- **Modified:** 2026-07-23
+
+## APIs
+
+### Aldermore Open Data API (OBIE Standard)
+
+The UK Open Banking Open Data API standard (public, unauthenticated reference data — products, ATMs, branches). No Aldermore Open Data endpoint confirmed; as a branchless lender its Open Data scope is minimal.
+
+- **Human URL:** [https://openbankinguk.github.io/opendata-api-docs-pub/v2.4.0/](https://openbankinguk.github.io/opendata-api-docs-pub/v2.4.0/)
+
+#### Properties
+
+- [OpenAPI](openapi/aldermore-obie-open-data-openapi.json) — OBIE shared Open Data standard (Swagger 2.0)
+- [Documentation](https://openbankinguk.github.io/opendata-api-docs-pub/v2.4.0/)
+- [API Reference](https://github.com/OpenBankingUK/opendata-api-spec-compiled)
+
+### Aldermore Account & Transaction Information API (OBIE Read/Write Standard)
+
+The UK Open Banking Read/Write AIS standard — FAPI-secured (OAuth2/OIDC, mutual-TLS, PSD2 SCA). Represented as the shared OBIE standard; no Aldermore AIS endpoint or onboarding confirmed.
+
+- **Human URL:** [https://openbankinguk.github.io/read-write-api-site3/](https://openbankinguk.github.io/read-write-api-site3/)
+
+#### Properties
+
+- [OpenAPI](openapi/aldermore-obie-account-info-openapi.yaml) — OBIE shared Read/Write standard (OpenAPI 3.0)
+- [Documentation](https://openbankinguk.github.io/read-write-api-site3/)
+- [API Reference](https://github.com/OpenBankingUK/read-write-api-specs)
+
+### Aldermore Payment Initiation API (OBIE Read/Write Standard)
+
+The UK Open Banking Read/Write PIS standard — FAPI-secured (OAuth2/OIDC, mutual-TLS, PSD2 SCA). Represented as the shared OBIE standard; no Aldermore PIS endpoint or onboarding confirmed.
+
+- **Human URL:** [https://openbankinguk.github.io/read-write-api-site3/](https://openbankinguk.github.io/read-write-api-site3/)
+
+#### Properties
+
+- [OpenAPI](openapi/aldermore-obie-payment-initiation-openapi.yaml) — OBIE shared Read/Write standard (OpenAPI 3.0)
+- [Documentation](https://openbankinguk.github.io/read-write-api-site3/)
+- [API Reference](https://github.com/OpenBankingUK/read-write-api-specs)
+
+### Aldermore Confirmation of Funds API (OBIE Read/Write Standard)
+
+The UK Open Banking Read/Write CBPII standard — FAPI-secured (OAuth2/OIDC, mutual-TLS, PSD2 SCA). Represented as the shared OBIE standard; no Aldermore CBPII endpoint or onboarding confirmed.
+
+- **Human URL:** [https://openbankinguk.github.io/read-write-api-site3/](https://openbankinguk.github.io/read-write-api-site3/)
+
+#### Properties
+
+- [OpenAPI](openapi/aldermore-obie-confirmation-of-funds-openapi.yaml) — OBIE shared Read/Write standard (OpenAPI 3.0)
+- [Documentation](https://openbankinguk.github.io/read-write-api-site3/)
+- [API Reference](https://github.com/OpenBankingUK/read-write-api-specs)
+
+## Common Properties
+
+- [Website](https://www.aldermore.co.uk/)
+- [GitHub Organization](https://github.com/aldermore)
+- [LinkedIn](https://www.linkedin.com/company/aldermorebank)
+- [Support](https://www.aldermore.co.uk/contact-us/)
+- [Terms of Service](https://www.aldermore.co.uk/legal/terms-and-conditions/)
+- [Privacy Policy](https://www.aldermore.co.uk/legal/privacy-policy/)
+- [Legal](https://www.aldermore.co.uk/legal/)
+
+## Maintainers
+
+**FN:** Kin Lane
+**Email:** kin@apievangelist.com

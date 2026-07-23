@@ -1,0 +1,99 @@
+aid: aldermore
+name: Aldermore Bank
+review:
+  question: Does Aldermore Bank expose a public developer portal, a confirmed UK Open
+    Banking Open Data endpoint, or any bank-proprietary API surface?
+  answer: false
+  date: '2026-07-23'
+  reviewer: API Evangelist
+findings:
+  summary: |
+    Aldermore Bank plc is a FirstRand-owned UK specialist bank (savings and
+    specialist lending: residential/BTL mortgages, commercial and property
+    finance, asset finance, invoice finance, and MotoNovo motor finance). It
+    is branchless and does NOT offer personal or business current accounts,
+    so its UK Open Banking (OBIE / PSD2) payment-account footprint is
+    minimal, and it is NOT one of the nine CMA-mandated banks (CMA9).
+
+    No public developer/API surface could be confirmed at bootstrap. There is
+    no developer., api., openbanking., or apis.aldermore.co.uk host (all fail
+    to resolve). The corporate site (legal, contact, investors pages) makes no
+    reference to a developer program, API, Open Banking, or Open Data, and
+    Aldermore does not appear in community/OBIE lists of UK Open Data
+    publishers (which are dominated by the CMA9). A probe of
+    https://www.aldermore.co.uk/.well-known/open-banking/config.json returned
+    HTTP 404.
+
+    The OBIE Open Data and Read/Write API families are represented in apis.yml
+    strictly as the SHARED UK Open Banking standard, unverified for this bank.
+    The four harvested OpenAPI documents are the Open Banking Implementation
+    Entity (OBIE) reference specifications, NOT Aldermore-published contracts.
+    No Aldermore host, base URL, credential, or endpoint has been invented.
+  authModel:
+    readWriteStandard: OBIE Read/Write API Standard (AIS / PIS / CBPII)
+    security: FAPI-grade OAuth2 / OIDC + mutual-TLS client authentication +
+      PSD2 Strong Customer Authentication (SCA)
+    note: Documented as the OBIE standard's security model. Not confirmed to be
+      operated by Aldermore, which publishes no developer onboarding.
+  specProvenance:
+    - artifact: openapi/aldermore-obie-open-data-openapi.json
+      source: https://raw.githubusercontent.com/OpenBankingUK/opendata-api-spec-compiled/master/opendata-swagger.json
+      standard: OBIE Open Data API (Swagger 2.0, v1.3)
+      proprietary: false
+      note: Shared OBIE standard, not an Aldermore contract.
+    - artifact: openapi/aldermore-obie-account-info-openapi.yaml
+      source: https://raw.githubusercontent.com/OpenBankingUK/read-write-api-specs/master/dist/openapi/account-info-openapi.yaml
+      standard: OBIE Account & Transaction Information (AIS), OpenAPI 3.0
+      proprietary: false
+      note: Shared OBIE standard, not an Aldermore contract.
+    - artifact: openapi/aldermore-obie-payment-initiation-openapi.yaml
+      source: https://raw.githubusercontent.com/OpenBankingUK/read-write-api-specs/master/dist/openapi/payment-initiation-openapi.yaml
+      standard: OBIE Payment Initiation (PIS), OpenAPI 3.0
+      proprietary: false
+      note: Shared OBIE standard, not an Aldermore contract.
+    - artifact: openapi/aldermore-obie-confirmation-of-funds-openapi.yaml
+      source: https://raw.githubusercontent.com/OpenBankingUK/read-write-api-specs/master/dist/openapi/confirmation-funds-openapi.yaml
+      standard: OBIE Confirmation of Funds (CBPII), OpenAPI 3.0
+      proprietary: false
+      note: Shared OBIE standard, not an Aldermore contract.
+  transports:
+    - protocol: REST
+      scheme: https
+      documented: true
+      note: OBIE Open Data and Read/Write APIs are HTTPS/REST/JSON. No Aldermore
+        base URL is documented or confirmed.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket surface is part of the OBIE standard or documented by
+        Aldermore.
+  probes:
+    - url: https://www.aldermore.co.uk/.well-known/open-banking/config.json
+      status: 404
+    - url: https://developer.aldermore.co.uk/
+      status: '000 (DNS does not resolve)'
+    - url: https://api.aldermore.co.uk/open-banking/v2.3/atms
+      status: '000 (DNS does not resolve)'
+    - url: https://openbanking.aldermore.co.uk/open-banking/v2.3/atms
+      status: '000 (DNS does not resolve)'
+    - url: https://www.aldermore.co.uk/
+      status: 200
+    - url: https://github.com/aldermore
+      status: 200
+      note: Official "Aldermore Bank PLC" GitHub org (United Kingdom, links to
+        aldermore.co.uk); no public repositories.
+    - url: https://www.linkedin.com/company/aldermorebank
+      status: verified official company page
+sources:
+  - url: https://www.aldermore.co.uk/legal/
+    type: Legal
+    note: FCA/PRA firm reference 204503; no API/Open Banking/Open Data mention.
+  - url: https://www.aldermore.co.uk/investors/
+    type: Documentation
+    note: FirstRand ownership and Aldermore Group (Aldermore Bank plc + MotoNovo).
+  - url: https://openbankinguk.github.io/opendata-api-docs-pub/v2.4.0/
+    type: Documentation
+    note: OBIE Open Data API specification (shared UK standard).
+  - url: https://github.com/OpenBankingUK/read-write-api-specs
+    type: APIReference
+    note: OBIE Read/Write API specifications (shared UK standard) harvested here.
