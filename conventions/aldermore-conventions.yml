@@ -1,0 +1,55 @@
+generated: '2026-07-23'
+method: derived
+source: >-
+  openapi/aldermore-obie-account-info-openapi.yaml,
+  openapi/aldermore-obie-payment-initiation-openapi.yaml,
+  openapi/aldermore-obie-confirmation-of-funds-openapi.yaml
+standard: UK Open Banking (OBIE) Read/Write API v4.0.1 (FAPI profile)
+note: >-
+  These conventions are the shared OBIE Read/Write API conventions carried by the
+  standard specs in this repo, not an Aldermore-proprietary contract. Aldermore was
+  not confirmed to publish its own Open Banking developer portal at bootstrap.
+authentication:
+  style: OAuth2 + OpenID Connect (FAPI), mutual-TLS (MTLS) client authentication
+  flows: [authorizationCode, clientCredentials]
+  psu_auth: PSD2 Strong Customer Authentication (SCA) via authorizationCode consent flow
+  detail: authentication/aldermore-authentication.yml
+idempotency:
+  supported: true
+  header: x-idempotency-key
+  scope: write operations (payment-order and file-payment creation)
+  max_length: 40
+  retention: 24 hours (per OBIE spec guidance)
+  behaviour: >-
+    A TPP replays the same x-idempotency-key with an identical request body to
+    guarantee at-most-once payment creation; the ASPSP returns the original resource
+    rather than creating a duplicate.
+  source: 24 x-idempotency-key header parameters across the payment specs
+pagination:
+  style: link-based
+  response_fields: [Links, Meta]
+  cursor: Links.Self / Links.First / Links.Prev / Links.Next / Links.Last
+  page_size: Meta.TotalPages
+  detail: OBIE resources return a Data envelope alongside Links and Meta objects
+tracing:
+  fapi_interaction_id: x-fapi-interaction-id (request/response correlation, echoed by ASPSP)
+  fapi_auth_date: x-fapi-auth-date
+  fapi_customer_ip_address: x-fapi-customer-ip-address
+  count: 343 x-fapi-* header usages across the specs
+versioning:
+  scheme: uri-path + Accept header
+  current: v4.0.1
+  detail: lifecycle/aldermore-lifecycle.yml
+error_envelope:
+  shape: OBErrorResponse (Code, Id, Message, Errors[] with ErrorCode/Message/Path/Url)
+  media_type: application/json
+  note: OBIE uses its own OBErrorResponse envelope, not RFC 9457 problem+json
+  detail: errors/aldermore-problem-types.yml
+rate_limit_signaling:
+  documented: '429 Too Many Requests is defined on every operation; no standard header contract in-spec'
+cross_links:
+  authentication: authentication/aldermore-authentication.yml
+  scopes: scopes/aldermore-scopes.yml
+  errors: errors/aldermore-problem-types.yml
+  lifecycle: lifecycle/aldermore-lifecycle.yml
+  conformance: conformance/aldermore-conformance.yml

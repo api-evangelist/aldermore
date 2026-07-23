@@ -1,0 +1,13 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Aldermore Payment Initiation (OBIE)
+  version: 1.0.0
+extends: openapi/aldermore-obie-payment-initiation-openapi.yaml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-provider: aldermore
+      x-apievangelist-standard: UK Open Banking (OBIE)
+      x-apievangelist-note: >-
+        Represented as the shared OBIE standard; no Aldermore-proprietary endpoint
+        confirmed at bootstrap. Enhancements captured as an overlay only.

@@ -1,0 +1,26 @@
+generated: '2026-07-23'
+method: searched
+source: live probes of https://www.aldermore.co.uk/.well-known/*
+host: https://www.aldermore.co.uk
+notes: >-
+  The Aldermore corporate website (Umbraco CMS on Azure) publishes a security.txt
+  and Umbraco Delivery API member OIDC discovery documents. These are the website's
+  own member-authentication endpoints, not the OBIE Open Banking API surface (no
+  Aldermore-proprietary banking API host was confirmed at bootstrap).
+documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: aldermore-security.txt
+    note: RFC 9116 security contact (securityresearch@aldermore.co.uk); fields are comment-prefixed
+  - path: /.well-known/openid-configuration
+    status: 200
+    file: aldermore-openid-configuration.json
+    note: Umbraco Delivery API member OIDC config (website member auth, azurewebsites.net issuer)
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: aldermore-oauth-authorization-server.json
+    note: RFC 8414 metadata (identical to openid-configuration; website member auth)
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404

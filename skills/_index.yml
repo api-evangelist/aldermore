@@ -1,0 +1,12 @@
+generated: '2026-07-23'
+method: generated
+source: grounded in verified operationIds from openapi/*.yaml (OBIE Read/Write standard)
+skills:
+  - file: aldermore-retrieve-account-information.md
+    name: Retrieve account and transaction information (OBIE AIS)
+    api: openapi/aldermore-obie-account-info-openapi.yaml
+    operations: [CreateAccountAccessConsents, GetAccountAccessConsentsConsentId, GetAccounts, GetAccountsAccountIdBalances, GetAccountsAccountIdTransactions]
+  - file: aldermore-initiate-domestic-payment.md
+    name: Initiate a domestic payment (OBIE PIS)
+    api: openapi/aldermore-obie-payment-initiation-openapi.yaml
+    operations: [CreateDomesticPaymentConsents, GetDomesticPaymentConsentsConsentId, CreateDomesticPayments, GetDomesticPaymentsDomesticPaymentId]

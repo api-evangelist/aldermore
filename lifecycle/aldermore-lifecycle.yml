@@ -1,0 +1,25 @@
+generated: '2026-07-23'
+method: derived
+source: >-
+  OBIE Read/Write API standard (openapi/*.yaml, version 4.0.1) + OBIE Open Data
+  (openapi/aldermore-obie-open-data-openapi.json, v1.3)
+note: >-
+  Versioning/lifecycle reflects the shared OBIE standard carried in this repo, not an
+  Aldermore-published API lifecycle policy (no Aldermore developer portal confirmed).
+versioning:
+  scheme: uri-path (major version) + Accept header
+  read_write_version: v4.0.1
+  open_data_version: v1.3
+  governance_docs: https://openbankinguk.github.io/read-write-api-site3/
+deprecation:
+  policy: >-
+    OBIE manages Read/Write API version lifecycle centrally; older major versions are
+    deprecated and retired on published OBIE timelines. No Aldermore-specific Sunset/
+    Deprecation (RFC 8594) header contract was confirmed.
+  policy_url: https://standards.openbanking.org.uk/
+  sunset_header: false
+sla:
+  url: null
+  note: not published for this representation
+status_page: null
+deprecated_operations: []

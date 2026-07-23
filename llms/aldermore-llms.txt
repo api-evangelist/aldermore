@@ -1,0 +1,34 @@
+# Aldermore Bank
+
+> Aldermore Bank plc is a UK specialist bank (founded 2009, Reading) offering savings and specialist lending (residential and buy-to-let mortgages, commercial and property finance, asset, invoice and motor finance). It is a branchless specialist lender, NOT a CMA9 current-account bank, so its UK Open Banking (OBIE/PSD2) footprint is minimal. No Aldermore-proprietary developer portal or API was confirmed; the specs below represent the shared UK Open Banking (OBIE) standard, unverified for this bank.
+
+## APIs
+- [Open Data API (OBIE Standard)](https://openbankinguk.github.io/opendata-api-docs-pub/v2.4.0/): public reference data (products, ATMs, branches)
+- [Account & Transaction Information API (OBIE Read/Write)](https://openbankinguk.github.io/read-write-api-site3/): FAPI-secured AIS
+- [Payment Initiation API (OBIE Read/Write)](https://openbankinguk.github.io/read-write-api-site3/): FAPI-secured PIS
+- [Confirmation of Funds API (OBIE Read/Write)](https://openbankinguk.github.io/read-write-api-site3/): FAPI-secured CBPII
+
+## Specs
+- openapi/aldermore-obie-account-info-openapi.yaml (OBIE Read/Write v4.0.1)
+- openapi/aldermore-obie-payment-initiation-openapi.yaml (OBIE Read/Write v4.0.1)
+- openapi/aldermore-obie-confirmation-of-funds-openapi.yaml (OBIE Read/Write v4.0.1)
+- openapi/aldermore-obie-open-data-openapi.json (OBIE Open Data v1.3)
+
+## Artifacts
+- authentication/aldermore-authentication.yml: OAuth2 (authorizationCode + clientCredentials), FAPI, MTLS
+- scopes/aldermore-scopes.yml: accounts, payments, fundsconfirmations
+- conventions/aldermore-conventions.yml: idempotency (x-idempotency-key), Links/Meta pagination, x-fapi-* tracing
+- errors/aldermore-problem-types.yml: OBErrorResponse envelope + status catalog
+- conformance/aldermore-conformance.yml: OAuth2, OIDC, FAPI, PSD2, MTLS
+- data-model/aldermore-data-model.yml: OBIE AIS/PIS/CBPII entity graph
+- lifecycle/aldermore-lifecycle.yml: OBIE versioning (v4.0.1)
+- mcp/aldermore-mcp.yml: candidate MCP tool surface
+- skills/: AIS read + PIS domestic-payment agent skills
+- security/aldermore-vulnerability-disclosure.yml: securityresearch@aldermore.co.uk
+- security/aldermore-domain-security.yml: TLS/HSTS/DNSSEC/SPF/DMARC probe
+- well-known/aldermore-well-known.yml: security.txt + Umbraco OIDC discovery
+
+## Docs
+- [Aldermore website](https://www.aldermore.co.uk/)
+- [OBIE Read/Write standards](https://openbankinguk.github.io/read-write-api-site3/)
+- [OBIE specs (GitHub)](https://github.com/OpenBankingUK/read-write-api-specs)

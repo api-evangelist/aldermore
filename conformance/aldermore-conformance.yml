@@ -1,0 +1,38 @@
+generated: '2026-07-23'
+method: derived
+source: >-
+  openapi/aldermore-obie-account-info-openapi.yaml,
+  openapi/aldermore-obie-payment-initiation-openapi.yaml,
+  openapi/aldermore-obie-confirmation-of-funds-openapi.yaml,
+  openapi/aldermore-obie-open-data-openapi.json
+note: >-
+  Standards asserted from the shared OBIE Read/Write specs carried in this repo. The
+  OBIE Read/Write API is a FAPI-secured PSD2 profile. Not independently verified as an
+  Aldermore production deployment.
+standards:
+  - id: oauth2
+    conforms: true
+    evidence: securitySchemes TPPOAuth2Security (clientCredentials) + PSUOAuth2Security (authorizationCode)
+  - id: oidc
+    conforms: true
+    evidence: OBIE Read/Write requires OpenID Connect for PSU authentication / SCA
+  - id: fapi
+    conforms: true
+    evidence: 343 x-fapi-* header parameters (x-fapi-interaction-id, x-fapi-auth-date, x-fapi-customer-ip-address)
+  - id: psd2
+    conforms: true
+    evidence: OBIE Read/Write AIS/PIS/CBPII under PSD2 with Strong Customer Authentication
+  - id: mtls
+    conforms: true
+    evidence: OBIE mandates mutual-TLS client authentication for TPP-ASPSP connections
+  - id: idempotency
+    conforms: true
+    evidence: x-idempotency-key header on payment-order creation operations
+  - id: pagination
+    conforms: true
+    evidence: Links + Meta response objects across resource collections
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: uses OBErrorResponse envelope, not application/problem+json
+  - id: json-api
+    conforms: false

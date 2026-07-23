@@ -1,0 +1,76 @@
+generated: '2026-07-23'
+method: derived
+source: openapi/aldermore-obie-account-info-openapi.yaml, openapi/aldermore-obie-payment-initiation-openapi.yaml
+note: >-
+  Entity-relationship graph derived from the OBIE Read/Write resource model carried in
+  this repo. Represents the shared OBIE standard, not an Aldermore-proprietary schema.
+entities:
+  - name: AccountAccessConsent
+    id_field: ConsentId
+    domain: AIS
+  - name: Account
+    id_field: AccountId
+    domain: AIS
+  - name: Balance
+    domain: AIS
+  - name: Transaction
+    domain: AIS
+  - name: Beneficiary
+    domain: AIS
+  - name: StandingOrder
+    domain: AIS
+  - name: DirectDebit
+    domain: AIS
+  - name: Statement
+    id_field: StatementId
+    domain: AIS
+  - name: Party
+    domain: AIS
+  - name: DomesticPaymentConsent
+    id_field: ConsentId
+    domain: PIS
+  - name: DomesticPayment
+    id_field: DomesticPaymentId
+    domain: PIS
+  - name: FundsConfirmationConsent
+    id_field: ConsentId
+    domain: CBPII
+  - name: FundsConfirmation
+    domain: CBPII
+relationships:
+  - from: Account
+    type: belongs_to
+    to: AccountAccessConsent
+    via: ConsentId
+  - from: Balance
+    type: belongs_to
+    to: Account
+    via: AccountId
+  - from: Transaction
+    type: belongs_to
+    to: Account
+    via: AccountId
+  - from: Beneficiary
+    type: belongs_to
+    to: Account
+    via: AccountId
+  - from: StandingOrder
+    type: belongs_to
+    to: Account
+    via: AccountId
+  - from: DirectDebit
+    type: belongs_to
+    to: Account
+    via: AccountId
+  - from: Statement
+    type: belongs_to
+    to: Account
+    via: AccountId
+  - from: DomesticPayment
+    type: belongs_to
+    to: DomesticPaymentConsent
+    via: ConsentId
+  - from: FundsConfirmation
+    type: belongs_to
+    to: FundsConfirmationConsent
+    via: ConsentId
