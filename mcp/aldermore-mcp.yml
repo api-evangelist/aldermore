@@ -2,39 +2,44 @@ generated: '2026-07-23'
 method: derived
 status: candidate
 source: derived from OBIE Read/Write OpenAPI operations in openapi/
-note: >-
-  No official Aldermore or OBIE hosted MCP server was found. This is a candidate tool
-  surface derived from the read/write operations of the OBIE standard specs carried in
-  this repo. Tools inherit their real input contract from the referenced operationId.
+note: No official Aldermore or OBIE hosted MCP server was found. This is a candidate tool surface derived
+  from the read/write operations of the OBIE standard specs carried in this repo. Tools inherit their
+  real input contract from the referenced operationId.
 server:
   name: aldermore-open-banking
   transport: http
   url: null
 tools:
-  - name: create_account_access_consent
-    description: Create an account-access consent (AIS) for a PSU to authorise
-    source_operation: openapi/aldermore-obie-account-info-openapi.yaml#CreateAccountAccessConsents
-  - name: get_account_access_consent
-    description: Retrieve the status of an account-access consent
-    source_operation: openapi/aldermore-obie-account-info-openapi.yaml#GetAccountAccessConsentsConsentId
-  - name: list_accounts
-    description: List the PSU accounts authorised under a consent
-    source_operation: openapi/aldermore-obie-account-info-openapi.yaml#GetAccounts
-  - name: get_account_balances
-    description: Retrieve balances for a specific account
-    source_operation: openapi/aldermore-obie-account-info-openapi.yaml#GetAccountsAccountIdBalances
-  - name: get_account_transactions
-    description: Retrieve transactions for a specific account
-    source_operation: openapi/aldermore-obie-account-info-openapi.yaml#GetAccountsAccountIdTransactions
-  - name: create_domestic_payment_consent
-    description: Create a domestic-payment consent (PIS) for authorisation
-    source_operation: openapi/aldermore-obie-payment-initiation-openapi.yaml#CreateDomesticPaymentConsents
-  - name: get_domestic_payment_consent
-    description: Retrieve the status of a domestic-payment consent
-    source_operation: openapi/aldermore-obie-payment-initiation-openapi.yaml#GetDomesticPaymentConsentsConsentId
-  - name: create_domestic_payment
-    description: Execute a domestic payment against an authorised consent
-    source_operation: openapi/aldermore-obie-payment-initiation-openapi.yaml#CreateDomesticPayments
-  - name: create_funds_confirmation
-    description: Confirm availability of funds (CBPII)
-    source_operation: openapi/aldermore-obie-confirmation-of-funds-openapi.yaml#CreateFundsConfirmations
+- name: create_account_access_consent
+  description: Create an account-access consent (AIS) for a PSU to authorise
+  source_operation: openapi/aldermore-obie-account-info-openapi.yaml#CreateAccountAccessConsents
+- name: get_account_access_consent
+  description: Retrieve the status of an account-access consent
+  source_operation: openapi/aldermore-obie-account-info-openapi.yaml#GetAccountAccessConsentsConsentId
+- name: list_accounts
+  description: List the PSU accounts authorised under a consent
+  source_operation: openapi/aldermore-obie-account-info-openapi.yaml#GetAccounts
+- name: get_account_balances
+  description: Retrieve balances for a specific account
+  source_operation: openapi/aldermore-obie-account-info-openapi.yaml#GetAccountsAccountIdBalances
+- name: get_account_transactions
+  description: Retrieve transactions for a specific account
+  source_operation: openapi/aldermore-obie-account-info-openapi.yaml#GetAccountsAccountIdTransactions
+- name: create_domestic_payment_consent
+  description: Create a domestic-payment consent (PIS) for authorisation
+  source_operation: openapi/aldermore-obie-payment-initiation-openapi.yaml#CreateDomesticPaymentConsents
+- name: get_domestic_payment_consent
+  description: Retrieve the status of a domestic-payment consent
+  source_operation: openapi/aldermore-obie-payment-initiation-openapi.yaml#GetDomesticPaymentConsentsConsentId
+- name: create_domestic_payment
+  description: Execute a domestic payment against an authorised consent
+  source_operation: openapi/aldermore-obie-payment-initiation-openapi.yaml#CreateDomesticPayments
+- name: create_funds_confirmation
+  description: Confirm availability of funds (CBPII)
+  source_operation: openapi/aldermore-obie-confirmation-of-funds-openapi.yaml#CreateFundsConfirmations
+deployment:
+  mode: none
+  verified: derived
+  tools: 9
+  checked: '2026-08-12'
+  source: catalog MCP census
