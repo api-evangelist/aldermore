@@ -1,0 +1,191 @@
+slug: aldermore
+provider: Aldermore Bank
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Banking & Capital Markets
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 19
+edges:
+- tag: Domestic Payments
+  spec_file: aldermore-domestic-payments-api-openapi.yml
+  capability_id: BC-1340.10
+  capability_id_l1: BC-1340
+  capability_name: Payment Initiation Management
+  confidence: 0.95
+  evidence: POST /domestic-payments  CreateDomesticPayments  Initiate a Domestic Payment
+  reason: Explicit domestic payment initiation and status retrieval under a 'Payment Initiation API Specification'
+    spec; no other reading fits.
+- tag: Domestic Scheduled Payments
+  spec_file: aldermore-domestic-scheduled-payments-api-openapi.yml
+  capability_id: BC-1340.10
+  capability_id_l1: BC-1340
+  capability_name: Payment Initiation Management
+  confidence: 0.92
+  evidence: POST /domestic-scheduled-payments  Initiate a Domestic Scheduled Payment
+  reason: Initiation and retrieval of future-dated domestic payment instructions, i.e. payment instruction
+    capture and authorisation.
+- tag: Domestic Payment Consents
+  spec_file: aldermore-domestic-payment-consents-api-openapi.yml
+  capability_id: BC-1340.10
+  capability_id_l1: BC-1340
+  capability_name: Payment Initiation Management
+  confidence: 0.9
+  evidence: POST /domestic-payment-consents  Create a Domestic Payment Consent; GET .../funds-confirmation  Confirm
+    availability of funds for a Domestic Payment
+  reason: Open Banking payment initiation consent capture and funds availability validation — exactly
+    payment instruction capture, validation and authorisation.
+- tag: Domestic Standing Orders
+  spec_file: aldermore-domestic-standing-orders-api-openapi.yml
+  capability_id: BC-1340.10
+  capability_id_l1: BC-1340
+  capability_name: Payment Initiation Management
+  confidence: 0.9
+  evidence: POST /domestic-standing-orders  CreateDomesticStandingOrders  Submit a Domestic Standing Order
+  reason: Submission and retrieval of recurring standing order payment instructions; 'Standing Orders'
+    here are payment mandates, not sales orders.
+- tag: Domestic Scheduled Payment Consents
+  spec_file: aldermore-domestic-scheduled-payment-consents-api-openapi.yml
+  capability_id: BC-1340.10
+  capability_id_l1: BC-1340
+  capability_name: Payment Initiation Management
+  confidence: 0.88
+  evidence: POST /domestic-scheduled-payment-consents  Create a Domestic Scheduled Payment Consent
+  reason: Consent/authorisation capture for a future-dated domestic payment instruction — payment initiation
+    authorisation.
+- tag: Domestic Standing Order Consents
+  spec_file: aldermore-domestic-standing-order-consents-api-openapi.yml
+  capability_id: BC-1340.10
+  capability_id_l1: BC-1340
+  capability_name: Payment Initiation Management
+  confidence: 0.85
+  evidence: POST /domestic-standing-order-consents  Create a Domestic Standing Order Consent; schema OBFrequency6Code
+  reason: Consent capture for recurring standing order payment instructions under the Payment Initiation
+    spec — payment instruction capture/authorisation.
+- tag: File Payments
+  spec_file: aldermore-file-payments-api-openapi.yml
+  capability_id: BC-1340.10
+  capability_id_l1: BC-1340
+  capability_name: Payment Initiation Management
+  confidence: 0.85
+  evidence: POST /file-payments  CreateFilePayments  Submit a File Payment; GET /file-payments/{FilePaymentId}/payment-details
+  reason: Submission and status reporting of bulk payment files — payment instruction capture and authorisation
+    via the Open Banking file payment rail.
+- tag: International Payments
+  spec_file: aldermore-international-payments-api-openapi.yml
+  capability_id: BC-1340.40
+  capability_id_l1: BC-1340
+  capability_name: Cross-Border Payment Management
+  confidence: 0.85
+  evidence: POST /international-payments  Initiate an International Payment
+  reason: Operations initiate and retrieve international payments with ISO 20022-style schemas (OBCashAccountDebtor4,
+    OBRegulatoryReporting1), squarely cross-border payment management.
+- tag: ATM
+  spec_file: aldermore-atm-api-openapi.yml
+  capability_id: BC-1300.50
+  capability_id_l1: BC-1300
+  capability_name: Banking Channels Management
+  confidence: 0.8
+  evidence: GET /atms — "Open Data ATM API"
+  reason: Exposes ATM network location data, which is channel/network information under Banking Channels
+    Management (branch, ATM, online, mobile).
+- tag: Branch
+  spec_file: aldermore-branch-api-openapi.yml
+  capability_id: BC-1300.50
+  capability_id_l1: BC-1300
+  capability_name: Banking Channels Management
+  confidence: 0.8
+  evidence: GET /branches — "Open Data Branch API"
+  reason: Branch location/details reference data, matching Banking Channels Management which explicitly
+    covers branch operations.
+- tag: File Payment Consents
+  spec_file: aldermore-file-payment-consents-api-openapi.yml
+  capability_id: BC-1340.10
+  capability_id_l1: BC-1340
+  capability_name: Payment Initiation Management
+  confidence: 0.8
+  evidence: POST /file-payment-consents  Create a File Payment Consent; POST /file-payment-consents/{ConsentId}/file  Upload
+    a File for a ConsentId
+  reason: Bulk/batch payment file consent capture under the Payment Initiation spec. File upload is the
+    mechanism, but the business object is a batch payment instruction awaiting authorisation.
+- tag: International Payment Consents
+  spec_file: aldermore-international-payment-consents-api-openapi.yml
+  capability_id: BC-1340.40
+  capability_id_l1: BC-1340
+  capability_name: Cross-Border Payment Management
+  confidence: 0.8
+  evidence: POST /international-payment-consents  Create an International Payment Consent; GET .../funds-confirmation  Confirm
+    Funds Availability for an International Payment
+  reason: Open Banking payment initiation surface for cross-border payments; consent creation and funds
+    confirmation are the authorisation step of an international payment instruction, best fitting Cross-Border
+    Payment Management.
+- tag: International Scheduled Payments
+  spec_file: aldermore-international-scheduled-payments-api-openapi.yml
+  capability_id: BC-1340.40
+  capability_id_l1: BC-1340
+  capability_name: Cross-Border Payment Management
+  confidence: 0.8
+  evidence: POST /international-scheduled-payments  Initiate an International Scheduled Payment
+  reason: Initiation and retrieval of future-dated international payments — cross-border payment initiation/processing.
+- tag: International Standing Orders
+  spec_file: aldermore-international-standing-orders-api-openapi.yml
+  capability_id: BC-1340.40
+  capability_id_l1: BC-1340
+  capability_name: Cross-Border Payment Management
+  confidence: 0.8
+  evidence: POST /international-standing-orders  Submit an International Standing Order
+  reason: Recurring cross-border payment instructions (OBFrequency6Code) submitted and retrieved — cross-border
+    payment management.
+- tag: Parties
+  spec_file: aldermore-parties-api-openapi.yml
+  capability_id: BC-1300.40
+  capability_id_l1: BC-1300
+  capability_name: Customer Information Management
+  confidence: 0.8
+  evidence: GET /accounts/{AccountId}/parties  Get Parties for an AccountId; schemas OBParty2, FullLegalName,
+    PartyNumber, LEI
+  reason: Returns the customer/party record (legal name, identifiers, account role) associated with an
+    account — banking customer information management.
+- tag: International Scheduled Payments Consents
+  spec_file: aldermore-international-scheduled-payments-consents-api-openapi.yml
+  capability_id: BC-1340.40
+  capability_id_l1: BC-1340
+  capability_name: Cross-Border Payment Management
+  confidence: 0.78
+  evidence: POST /international-scheduled-payment-consents  Create an International Scheduled Payment
+    Consent
+  reason: Consent (authorisation) capture plus funds availability confirmation for international scheduled
+    payments — part of the cross-border payment initiation flow.
+- tag: BCA
+  spec_file: aldermore-bca-api-openapi.yml
+  capability_id: BC-1310.10
+  capability_id_l1: BC-1310
+  capability_name: Product Catalogue Management
+  confidence: 0.75
+  evidence: GET /business-current-accounts — "Open Data BCA API"
+  reason: Open Data product-reference endpoint publishing business current account products and terms;
+    a product catalogue surface.
+- tag: International Standing Orders Consents
+  spec_file: aldermore-international-standing-orders-consents-api-openapi.yml
+  capability_id: BC-1340.40
+  capability_id_l1: BC-1340
+  capability_name: Cross-Border Payment Management
+  confidence: 0.75
+  evidence: POST /international-standing-order-consents  Create an International Standing Order Consent
+  reason: Authorisation/consent capture for recurring international payment instructions within the Payment
+    Initiation API.
+- tag: Products
+  spec_file: aldermore-products-api-openapi.yml
+  capability_id: BC-1310.10
+  capability_id_l1: BC-1310
+  capability_name: Product Catalogue Management
+  confidence: 0.7
+  evidence: GET /products  Get Products; schemas OB_FeeType1Code, OB_InterestRateType1Code_1, OB_FeeCategory1Code
+  reason: Exposes the banking product master with fee and interest-rate detail per account/product — banking
+    product catalogue (with parameter detail).

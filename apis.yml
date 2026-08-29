@@ -657,6 +657,9 @@ apis:
   - type: APIReference
     url: https://github.com/OpenBankingUK/read-write-api-specs
 common:
+- type: CapabilityMap
+  url: capabilities/aldermore-capability-edges.yml
+  name: Aldermore Bank Business Capability Map
 - type: AgenticAccess
   url: agentic-access/aldermore-agentic-access.yml
 - type: OAuthScopes
