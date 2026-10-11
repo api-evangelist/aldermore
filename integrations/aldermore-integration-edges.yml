@@ -1,0 +1,16 @@
+generated: '2026-10-12'
+method: none
+source:
+- https://zapier.com/apps/aldermore/integrations
+- https://n8n.io/integrations/aldermore/
+- https://composio.dev/toolkits/aldermore
+- https://monid.ai/tools/aldermore
+checked:
+- https://composio.dev/toolkits/aldermore
+- https://monid.ai/tools/aldermore
+- https://n8n.io/integrations/aldermore/
+- https://zapier.com/apps/aldermore/integrations
+summary: null
+marketplace_apps: []
+edges: []
+templates: []
